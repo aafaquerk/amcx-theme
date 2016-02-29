@@ -11,57 +11,14 @@ amcx-theme for open edX dogwood release (comprehensive theming)
 
 ## About this Open edX theme
 
-This theme is developped originally for [IONISx](https://ionisx.com).
+It is based on [Bootstrap](http://getbootstrap.com/), it uses bootstrap's Sass library – which is used by Open edX).
 
-As it’s based on [Bootstrap](http://getbootstrap.com/), it used [Less](http://lesscss.org/) (instead of
-Sass – which is used by Open edX).
-It is very simply customizable, you just need to change a few Less variables (see `/src/less/variables.less`).
+## How to use this theme (devstack)
 
-## Getting started
+First, open your '/edx/app/edxapp/edx-platform/themes' directory and clone this repo in as amcx-theme. 
 
-First of all, you need to know that the CSS output of the Less files is included in the repository.
-It’s not a very good practice, but it simplifies the (already cumbersome) deployment workflow of Open edX.
+Next, open your 'lms.env.json' file and edit 'COMPREHENSIVE_THEME_DIR' to '/edx/app/edxapp/edx-platform/themes/amcx-theme'
 
-This is so you will **never** need to install any of the development dependencies in your production environment.
+Save this file, and run 'paver updaate_assets lms' then 'paver lms'.
 
-If you want to use this theme, and customize it, I recommend that you fork it, update it, build the CSS output,
-and push it all in.
-
-### Development environment
-
-First, install `grunt-cli` and `bower` globally (or not) in order to have the required build tools.
-
-    npm install -g grunt-cli bower
-
-Then fetch the local depedencies.
-
-    npm install
-    bower install
-
-Finally, run `grunt` to build the theme’s source files.
-`grunt` will watch for changes and re-build the output automatically.
-
-Run `grunt build` for a one time build.  
-Run `grunt test` to lint and check the code style your source files as well.
-
-### Production environment
-
-As said earlier, DO NOT run `npm install` nor `bower install` on your production environemnt (this will require you
-to install `nodejs`, `npm` and `bower`, and why would you need that for a bunch of static files?
-
-Just drop the files into `/edx/edxapp/themes/$WHATEVER` using your deployment tools.
-If you’re using Open edX’s [configuration ansible playbooks](https://github.com/edx/configuration), you’ll just need to set
-
-```yml
-edxapp_theme_source_repo: https://github.com/your-user/your-repo.git
-edxapp_theme_version: your-tag
-edxapp_theme_name: $WHATEVER     # from earlier
-edxapp_use_custom_theme: true
-```
-
-See Open edX’s documentation on [custom theming](https://github.com/edx/edx-platform/wiki/Custom-Theming) for more
-information.
-
-## License
-
-[AGPL](http://en.wikipedia.org/wiki/Affero_General_Public_License)
+Point your browser to 127.0.0.1:(your port) and enjoy.
